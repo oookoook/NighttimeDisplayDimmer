@@ -15,18 +15,20 @@ namespace NighttimeDisplayDimmer
     internal class OptionsViewModel : INotifyPropertyChanged
     {
         private bool? nightModeEnabled;
-        public ObservableCollection<IMonitor> Displays { get; }
+        public ObservableCollection<MonitorInfo> Displays { get; }
         public bool? NightModeEnabled { get => nightModeEnabled; set { nightModeEnabled = value; NotifyPropertyChanged(); } }
 
         private bool loading = false;
         public bool Loading { get => loading; set { loading = value; NotifyPropertyChanged(); } }
+
+        public IEnumerable<MonitorInfo> ManagedDisplays { get => Displays.Where(d => d.Enabled && (d.Supported ?? false)); }
 
         public OptionsViewModel()
         {
             NighttimeDetector d = NighttimeDetector.GetInstance();
             d.NightModeChanged += NightModeChanged;
             NightModeEnabled = d.NightMode;
-            Displays = new ObservableCollection<IMonitor>();
+            Displays = new ObservableCollection<MonitorInfo>();
         }
 
         private void NightModeChanged(object sender, NighttimeDetector.NightModeChangeEventArgs args)
@@ -37,29 +39,60 @@ namespace NighttimeDisplayDimmer
         public async Task LoadDisplays(Dispatcher dispatcher)
         {
             Displays.Clear();
+            
+            List<MonitorInfo> saved = Util.Config.SavedDisplays;
+            
+            Loading = true;
+            // when wrapped in Task, the Loader behaves correctly
+            await Task.Run(async () =>
+            {
+                List<MonitorInfo> active = await ActiveDisplaysManager.MapDisplays(saved);
+                await dispatcher.BeginInvoke(() =>
+                {
+                    foreach (var monitor in active)
+                    {
+                        Displays.Add(monitor);
+                    }
+
+                });
+                Loading = false;
+            });
+            /*
             await Task.Run(async () =>
             {
                 Loading = true;
                 foreach (var m in await Monitorian.Core.Models.Monitor.MonitorManager.EnumerateMonitorsAsync())
                 {
-                    m.UpdateBrightness();
+                    MonitorInfo? i = saved.Find(ci => ci.Assign(m));
+                    if (i == null)
+                    {
+                        i = new MonitorInfo { Name = m.Description, DeviceInstanceId = m.DeviceInstanceId, Enabled = false, Monitor = m, DayConfig = new BrightnessConfig { Brightness = m.Brightness, Force = false }, NightConfig = new BrightnessConfig { Brightness = m.Brightness, Force = false } };
+                    }
                     await dispatcher.BeginInvoke(() =>
                     {
-                        Displays.Add(m);
+                        Displays.Add(i);
                     });
                 }
                 Loading = false;
             });
-
+            */
         }
 
-        public async Task ChangeBrightness(Dispatcher dispatcher)
+        public void SaveDisplays()
+        {
+            Util.Config.SaveDisplays(ManagedDisplays);
+        }
+
+        
+
+        public async Task ChangeBrightness(Dispatcher dispatcher, bool night)
         {
             await dispatcher.BeginInvoke(() =>
             {
-                foreach (IMonitor m in Displays)
+                foreach (MonitorInfo m in Displays)
                 {
-                    m.SetBrightness(60);    
+                    
+                    m.SetBrightness(night ? ConfigType.NIGHT : ConfigType.DAY);    
                 }
             });
         }
@@ -71,5 +104,24 @@ namespace NighttimeDisplayDimmer
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
 
+        public void SetCurrentToConfig(ConfigType t)
+        {
+            /*
+            foreach(MonitorInfo m in ManagedDisplays)
+            {
+                if (m.DayConfig != null)
+                {
+                    m.DayConfig.Brightness = m.GetBrightness();
+                }
+            }
+            */
+            // it's required to do it this way so changes can be observed
+            for(int i = 0; i < Displays.Count; i++)
+            {
+                MonitorInfo m = Displays[i].Clone();
+                m.GetConfig(t).Brightness = m.GetBrightness();
+                Displays[i] = m;
+            }
+        }
     }
 }

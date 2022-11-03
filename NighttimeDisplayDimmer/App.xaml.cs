@@ -15,6 +15,7 @@ namespace NighttimeDisplayDimmer
     public partial class App : Application
     {
         private TaskbarIcon? tb;
+        private BrightnessChanger? BrightnessChanger;
 
         protected override void OnStartup(StartupEventArgs e)
         {
@@ -24,7 +25,8 @@ namespace NighttimeDisplayDimmer
             tb = (TaskbarIcon)FindResource("taskbarIcon");
 
             // TODO load interval from settings
-            NighttimeDetector.GetInstance().Initialize(5);
+            NighttimeDetector.GetInstance().Initialize(Util.Config.RefreshInterval);
+            BrightnessChanger = new BrightnessChanger();
         }
 
         protected override void OnExit(ExitEventArgs e)

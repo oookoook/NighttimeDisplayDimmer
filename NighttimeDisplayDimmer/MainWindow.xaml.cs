@@ -24,6 +24,9 @@ namespace NighttimeDisplayDimmer
         OptionsViewModel model { get => (OptionsViewModel)this.DataContext; }
         
         public static RoutedCommand PreviewCommand = new RoutedCommand();
+        public static RoutedCommand SaveCommand = new RoutedCommand();
+        public static RoutedCommand SetDayCommand = new RoutedCommand();
+        public static RoutedCommand SetNightCommand = new RoutedCommand();
         public MainWindow()
         {
             InitializeComponent();
@@ -38,12 +41,45 @@ namespace NighttimeDisplayDimmer
         private async void PreviewCommand_Executed(object sender, ExecutedRoutedEventArgs e)
         {
             //MessageBox.Show("Preview Command Executed");
-            await model.ChangeBrightness(Dispatcher);
+            await model.ChangeBrightness(Dispatcher, true);
         }
 
         private void PreviewCommand_CanExecute(object sender, CanExecuteRoutedEventArgs e)
         {
             e.CanExecute = true;
+        }
+
+        private void SaveCommand_Executed(object sender, ExecutedRoutedEventArgs e)
+        {
+            //MessageBox.Show("Preview Command Executed");
+            model.SaveDisplays();
+        }
+
+        private void SaveCommand_CanExecute(object sender, CanExecuteRoutedEventArgs e)
+        {
+            e.CanExecute = !model.Loading;
+        }
+
+        private void SetDayCommand_Executed(object sender, ExecutedRoutedEventArgs e)
+        {
+            //MessageBox.Show("Preview Command Executed");
+            model.SetCurrentToConfig(ConfigType.DAY);
+        }
+
+        private void SetDayCommand_CanExecute(object sender, CanExecuteRoutedEventArgs e)
+        {
+            e.CanExecute = !model.Loading;
+        }
+
+        private void SetNightCommand_Executed(object sender, ExecutedRoutedEventArgs e)
+        {
+            //MessageBox.Show("Preview Command Executed");
+            model.SetCurrentToConfig(ConfigType.NIGHT);
+        }
+
+        private void SetNightCommand_CanExecute(object sender, CanExecuteRoutedEventArgs e)
+        {
+            e.CanExecute = !model.Loading;
         }
     }
 }

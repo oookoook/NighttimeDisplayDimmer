@@ -20,13 +20,26 @@
         <CommandBinding Command="{x:Static local:MainWindow.PreviewCommand}"
                   Executed="PreviewCommand_Executed"
                   CanExecute="PreviewCommand_CanExecute"/>
+        <CommandBinding Command="{x:Static local:MainWindow.SaveCommand}"
+                  Executed="SaveCommand_Executed"
+                  CanExecute="SaveCommand_CanExecute"/>
+        <CommandBinding Command="{x:Static local:MainWindow.SaveCommand}"
+                  Executed="SaveCommand_Executed"
+                  CanExecute="SaveCommand_CanExecute"/>
+        <CommandBinding Command="{x:Static local:MainWindow.SetDayCommand}"
+                  Executed="SetDayCommand_Executed"
+                  CanExecute="SetDayCommand_CanExecute"/>
+        <CommandBinding Command="{x:Static local:MainWindow.SetNightCommand}"
+                  Executed="SetNightCommand_Executed"
+                  CanExecute="SetNightCommand_CanExecute"/>
     </Window.CommandBindings>
     <ui:SimpleStackPanel>
+        <!--
         <StackPanel Orientation="Horizontal">
             <Label Content="Night mode"></Label>
             <Label Content="{Binding NightModeEnabled}"></Label>
         </StackPanel>
-
+        -->
         <Grid Margin="20">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="2*" />
@@ -44,7 +57,7 @@
                 Margin="0,15"
                 Text="Display"
                 VerticalAlignment="Center"
-                HorizontalAlignment="Center"
+                HorizontalAlignment="Left"
             />
             <TextBlock
             Grid.Column="2"
@@ -53,7 +66,7 @@
             Margin="0,15"
             Text="Day"
             VerticalAlignment="Center"
-                HorizontalAlignment="Center"
+            HorizontalAlignment="Center"
             />
             <TextBlock
             Grid.Column="3"
@@ -98,19 +111,44 @@
                     </StackPanel>
                     -->
                     <local:DisplayConfig 
-                        Label="{Binding Path=Description}" 
-                        BrightnessCurrent="{Binding Brightness}" 
+                        Label="{Binding Path=Name}" 
+                        Enabled="{Binding Path=Enabled}" 
+                        Supported="{Binding Path=Supported}" 
+                        DayBrightness="{Binding DayConfig.Brightness}"
+                        NightBrightness="{Binding NightConfig.Brightness}"
+                        DayForce="{Binding DayConfig.Force}"
+                        NightForce="{Binding NightConfig.Force}"
                         BrightnessMinimum="0"
                         BrightnessMaximum="100"
                         />
                 </DataTemplate>
             </ItemsControl.ItemTemplate>
         </ItemsControl>
-        <ui:SimpleStackPanel Orientation="Horizontal">
-            <Button Margin="10" Content="Preview" Command="{x:Static local:MainWindow.PreviewCommand}"></Button>
-            <Button Margin="10" Content="Reset"></Button>
-            <Button Margin="10" Content="Save"></Button>
-        </ui:SimpleStackPanel>
+        <Grid Margin="20">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="2*" />
+                <ColumnDefinition Width="1*" />
+                <ColumnDefinition Width="2*" />
+                <ColumnDefinition Width="2*" />
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="1*" />
+            </Grid.RowDefinitions>
+
+            <ui:SimpleStackPanel Orientation="Horizontal" Grid.Column="0" Grid.Row="0">
+                <!--<Button Margin="10" Content="Preview" Command="{x:Static local:MainWindow.PreviewCommand}"></Button>-->
+                <!--<Button Margin="10" Content="Reset"></Button>-->
+                <Button Margin="10" Content="Save settings" Command="{x:Static local:MainWindow.SaveCommand}"></Button>
+            </ui:SimpleStackPanel>
+
+            <Button Margin="10" Content="Set current" Command="{x:Static local:MainWindow.SetDayCommand}" Grid.Column="2" Grid.Row="0" VerticalAlignment="Center"
+                HorizontalAlignment="Center"></Button>
+            <Button Margin="10" Content="Set current" Command="{x:Static local:MainWindow.SetNightCommand}" Grid.Column="3" Grid.Row="0" VerticalAlignment="Center"
+                HorizontalAlignment="Center"></Button>
+            
+            
+        </Grid>
+        
     </ui:SimpleStackPanel>
     
 </Window>

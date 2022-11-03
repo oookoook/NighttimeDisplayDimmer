@@ -7,8 +7,12 @@
              xmlns:local="clr-namespace:NighttimeDisplayDimmer"
              mc:Ignorable="d"
              x:Name="dc"
-             d:DesignHeight="450" d:DesignWidth="800">
-    <Grid>
+             d:DesignHeight="300" d:DesignWidth="1000">
+
+    <UserControl.Resources>
+        <BooleanToVisibilityConverter x:Key="VisibleConverter" ></BooleanToVisibilityConverter>
+    </UserControl.Resources>
+    <Grid Height="140">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="2*" />
             <ColumnDefinition Width="1*" />
@@ -16,7 +20,8 @@
             <ColumnDefinition Width="2*" />
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
-            <RowDefinition Height="1*" />
+            <RowDefinition Height="2*" />
+            <!--<RowDefinition Height="1*" />-->
             <RowDefinition Height="1*" />
         </Grid.RowDefinitions>
         
@@ -29,7 +34,7 @@
             Text="{Binding Path=Label, ElementName=dc}"
             VerticalAlignment="Center"
             />
-        <ui:ToggleSwitch Grid.Column="1" Grid.Row="0" Grid.RowSpan="2">Enable control</ui:ToggleSwitch>
+        <ui:ToggleSwitch Grid.Column="1" Grid.Row="0" Grid.RowSpan="3" IsOn="{Binding Path=Enabled, ElementName=dc, Mode=TwoWay}" IsEnabled="{Binding Path=Supported, ElementName=dc}">Enable control</ui:ToggleSwitch>
         <!--Style="{StaticResource HeaderTextBlockStyle}" Style="{DynamicResource SubtitleTextBlockStyle}"-->
         <!--
         <TextBlock
@@ -40,32 +45,60 @@
                             Text="Subtitle" />
         
         -->
+
         <Slider 
                 Grid.Column="2"
                 Grid.Row="0"            
-                Minimum="0" 
-                Maximum="100"
+                Minimum="{Binding Path=BrightnessMinimum, ElementName=dc}" 
+                Maximum="{Binding Path=BrightnessMaximum, ElementName=dc}"
                 Margin="20,0"
-                Value="{Binding Path=Brightness, Mode=OneWay}" 
+                Value="{Binding Path=DayBrightness, ElementName=dc, Mode=TwoWay}" 
+                TickPlacement="BottomRight"
+                TickFrequency="5"
+                AutoToolTipPlacement="TopLeft"
+                VerticalAlignment="Center"
+                Visibility="{Binding Enabled, ElementName=dc, Converter={StaticResource VisibleConverter}}"            
+         />
+        
+        <!--
+        <TextBlock
+            Grid.Column="2"
+            Grid.Row="1"
+            Style="{StaticResource TitleTextBlockStyle}"
+            Margin="0,15"
+            Text="{Binding Path=DayBrightness, ElementName=dc}"
+            VerticalAlignment="Center"
+            HorizontalAlignment="Center"
+            Visibility="{Binding Enabled, ElementName=dc, Converter={StaticResource VisibleConverter}}"
+            />
+        -->
+
+        <Slider 
+                Grid.Column="3"
+                Grid.Row="0"            
+                Minimum="{Binding Path=BrightnessMinimum, ElementName=dc}" 
+                Maximum="{Binding Path=BrightnessMaximum, ElementName=dc}"
+                Margin="20,0"
+                Value="{Binding Path=NightBrightness, ElementName=dc, Mode=TwoWay}" 
                 
                 TickPlacement="BottomRight"
                 TickFrequency="5"
+                AutoToolTipPlacement="TopLeft"
                 VerticalAlignment="Center"
-                            
+                Visibility="{Binding Enabled, ElementName=dc, Converter={StaticResource VisibleConverter}}"           
          />
-
-            <Slider 
-                Grid.Column="3"
-                Grid.Row="0"            
-                Minimum="0" 
-                Maximum="100" 
-                Margin="20,0"
-                Value="{Binding Path=Brightness, Mode=OneWay}" 
-                TickPlacement="BottomRight"
-                TickFrequency="5"
-                VerticalAlignment="Center"
-                            
-         />
+        <!--
+        <TextBlock
+            Grid.Column="3"
+            Grid.Row="1"
+            Style="{StaticResource TitleTextBlockStyle}"
+            Margin="0,15"
+            Text="{Binding Path=NightBrightness, ElementName=dc}"
+            VerticalAlignment="Center"
+            HorizontalAlignment="Center"
+            Visibility="{Binding Enabled, ElementName=dc, Converter={StaticResource VisibleConverter}}"
+            />
+        -->
         <!--
         <StackPanel Orientation="Vertical" Grid.Row="1" Grid.Column="2">
             <Label Margin="10,0,10,0" Content="{Binding Path=BrightnessCurrent, ElementName=dc}"></Label>
@@ -73,8 +106,9 @@
             <Label Margin="10,0,10,0" Content="{Binding Path=BrightnessMaximum, ElementName=dc}"></Label>
         </StackPanel>
         -->
-        <ui:ToggleSwitch Grid.Row="1" Grid.Column="2">Never decrease</ui:ToggleSwitch>
-        <ui:ToggleSwitch Grid.Row="1" Grid.Column="3">Never increase</ui:ToggleSwitch>
+        <ui:ToggleSwitch Grid.Row="1" Grid.Column="2" IsOn="{Binding Path=DayForce, ElementName=dc, Mode=TwoWay}" VerticalAlignment="Center" HorizontalAlignment="Center" Visibility="{Binding Enabled, Converter={StaticResource VisibleConverter}}" >Force decrease</ui:ToggleSwitch>
+        <ui:ToggleSwitch Grid.Row="1" Grid.Column="3" IsOn="{Binding Path=NightForce, ElementName=dc, Mode=TwoWay}" VerticalAlignment="Center" HorizontalAlignment="Center" Visibility="{Binding Enabled, Converter={StaticResource VisibleConverter}}">Force increase</ui:ToggleSwitch>
+        
         
 
 
