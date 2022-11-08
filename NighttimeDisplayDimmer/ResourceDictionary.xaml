@@ -16,6 +16,7 @@
         <tb:TaskbarIcon.ContextMenu>
             <ContextMenu>
                 <MenuItem Header="{x:Static p:Localization.ContextMenuOptions}" Command="{Binding ShowWindowCommand}"/>
+                <MenuItem Header="{x:Static p:Localization.ContextMenuHelp}" Command="{Binding ShowHelpCommand}"/>
                 <MenuItem Header="{x:Static p:Localization.ContextMenuExit}" Command="{Binding ExitApplicationCommand}"/>
             </ContextMenu>
         </tb:TaskbarIcon.ContextMenu>

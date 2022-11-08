@@ -2,12 +2,14 @@
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
+using System.IO.Packaging;
 using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Threading;
 using Monitorian.Core.Models.Monitor;
+using NighttimeDisplayDimmer.Detectors;
 using Windows.Storage.Search;
 
 namespace NighttimeDisplayDimmer
@@ -22,6 +24,20 @@ namespace NighttimeDisplayDimmer
         public bool Loading { get => loading; set { loading = value; NotifyPropertyChanged(); } }
 
         public IEnumerable<MonitorInfo> ManagedDisplays { get => Displays.Where(d => d.Enabled && (d.Supported ?? false)); }
+
+        public bool StartOnLogin { get => Util.Startup.Automatic; set { Util.Startup.Automatic = value; NotifyPropertyChanged(); } }
+
+        public bool StartOnLoginAllowed { get => Util.Startup.Allowed; }
+
+        public string HelpUrl { get => Util.Links.Help; }
+        public string LicenseUrl { get => Util.Links.License; }
+
+        public string Version {
+            get {
+                Windows.ApplicationModel.PackageVersion v = Windows.ApplicationModel.Package.Current.Id.Version;
+                return $"{v.Major}.{v.Minor}.{v.Build}";
+            } 
+        }
 
         public OptionsViewModel()
         {

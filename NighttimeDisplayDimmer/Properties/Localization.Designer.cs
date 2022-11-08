@@ -61,6 +61,24 @@ namespace NighttimeDisplayDimmer.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Application settings.
+        /// </summary>
+        public static string ApplicationSettings {
+            get {
+                return ResourceManager.GetString("ApplicationSettings", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Nighttime Display Dimmer.
+        /// </summary>
+        public static string AppName {
+            get {
+                return ResourceManager.GetString("AppName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Exit.
         /// </summary>
         public static string ContextMenuExit {
@@ -70,11 +88,110 @@ namespace NighttimeDisplayDimmer.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Help.
+        /// </summary>
+        public static string ContextMenuHelp {
+            get {
+                return ResourceManager.GetString("ContextMenuHelp", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Options.
         /// </summary>
         public static string ContextMenuOptions {
             get {
                 return ResourceManager.GetString("ContextMenuOptions", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Day.
+        /// </summary>
+        public static string Day {
+            get {
+                return ResourceManager.GetString("Day", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Display.
+        /// </summary>
+        public static string Display {
+            get {
+                return ResourceManager.GetString("Display", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Enable control.
+        /// </summary>
+        public static string EnableControl {
+            get {
+                return ResourceManager.GetString("EnableControl", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Force decrease.
+        /// </summary>
+        public static string ForceDay {
+            get {
+                return ResourceManager.GetString("ForceDay", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Force increase.
+        /// </summary>
+        public static string ForceNight {
+            get {
+                return ResourceManager.GetString("ForceNight", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to License.
+        /// </summary>
+        public static string License {
+            get {
+                return ResourceManager.GetString("License", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Night.
+        /// </summary>
+        public static string Night {
+            get {
+                return ResourceManager.GetString("Night", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Save Settings.
+        /// </summary>
+        public static string SaveSettings {
+            get {
+                return ResourceManager.GetString("SaveSettings", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Set current brightness.
+        /// </summary>
+        public static string SetCurrent {
+            get {
+                return ResourceManager.GetString("SetCurrent", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Start on Windows Log In.
+        /// </summary>
+        public static string StartOnLogin {
+            get {
+                return ResourceManager.GetString("StartOnLogin", resourceCulture);
             }
         }
         
@@ -102,6 +219,15 @@ namespace NighttimeDisplayDimmer.Properties {
         public static string TrayToolTip {
             get {
                 return ResourceManager.GetString("TrayToolTip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Version.
+        /// </summary>
+        public static string Version {
+            get {
+                return ResourceManager.GetString("Version", resourceCulture);
             }
         }
     }

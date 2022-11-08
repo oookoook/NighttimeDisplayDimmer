@@ -81,5 +81,10 @@ namespace NighttimeDisplayDimmer
         {
             e.CanExecute = !model.Loading;
         }
+
+        private void RequestNavigate(object sender, RequestNavigateEventArgs e)
+        {
+            Util.Links.Open(e.Uri.AbsoluteUri);
+        }
     }
 }

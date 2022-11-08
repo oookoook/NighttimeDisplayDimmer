@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ABI.System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -21,7 +22,13 @@ namespace NighttimeDisplayDimmer
                 return new DelegateCommand
                 {
                     // hack to allow open options window in debug mode
-                    CanExecuteFunc = () => Application.Current.MainWindow == null || System.Diagnostics.Debugger.IsAttached,
+                    CanExecuteFunc = () => {
+#if DEBUG
+                        return Application.Current.MainWindow == null || System.Diagnostics.Debugger.IsAttached;
+#else
+                        return Application.Current.MainWindow == null;
+#endif
+                     },
                     CommandAction = () =>
                     {
                         Application.Current.MainWindow = new MainWindow();
@@ -46,6 +53,17 @@ namespace NighttimeDisplayDimmer
             }
         }
 
+        public ICommand ShowHelpCommand
+        {
+            get
+            {
+                return new DelegateCommand
+                {
+                    CommandAction = () => Util.Links.Open(Util.Links.Help),
+                    CanExecuteFunc = () => true
+                };
+            }
+        }
 
         /// <summary>
         /// Shuts down the application.

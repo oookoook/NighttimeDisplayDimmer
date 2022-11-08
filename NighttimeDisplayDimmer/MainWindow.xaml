@@ -4,12 +4,14 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:ui="http://schemas.modernwpf.com/2019"
-        xmlns:local="clr-namespace:NighttimeDisplayDimmer" 
+        xmlns:local="clr-namespace:NighttimeDisplayDimmer"
+        xmlns:p="clr-namespace:NighttimeDisplayDimmer.Properties"
         d:DataContext="{d:DesignInstance Type=local:OptionsViewModel}"
         mc:Ignorable="d"
         ui:WindowHelper.UseModernWindowStyle="True"
+        SizeToContent="Height"
         x:Name="optionsWindow"
-        Title="Nighttime Display Dimmer" Height="700" Width="1000" Icon="Resources/Logo.ico" Loaded="Window_Loaded">
+        Title="{x:Static p:Localization.AppName}" Height="700" Width="1000" Icon="Resources/Logo.ico" Loaded="Window_Loaded">
     <Window.DataContext>
         <local:OptionsViewModel/>
     </Window.DataContext>
@@ -33,14 +35,14 @@
                   Executed="SetNightCommand_Executed"
                   CanExecute="SetNightCommand_CanExecute"/>
     </Window.CommandBindings>
-    <ui:SimpleStackPanel>
+    <ui:SimpleStackPanel Margin="20">
         <!--
         <StackPanel Orientation="Horizontal">
             <Label Content="Night mode"></Label>
             <Label Content="{Binding NightModeEnabled}"></Label>
         </StackPanel>
         -->
-        <Grid Margin="20">
+        <Grid>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="2*" />
                 <ColumnDefinition Width="1*" />
@@ -48,69 +50,51 @@
                 <ColumnDefinition Width="2*" />
             </Grid.ColumnDefinitions>
             <Grid.RowDefinitions>
-                <RowDefinition Height="1*" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
             </Grid.RowDefinitions>
             <TextBlock
                 Grid.Column="0"
                 Grid.Row="0"
-                Style="{StaticResource HeaderTextBlockStyle}"
+                Style="{StaticResource SubheaderTextBlockStyle}"
                 Margin="0,15"
-                Text="Display"
+                Text="{x:Static p:Localization.Display}"
                 VerticalAlignment="Center"
                 HorizontalAlignment="Left"
             />
             <TextBlock
             Grid.Column="2"
             Grid.Row="0"
-            Style="{StaticResource HeaderTextBlockStyle}"
+            Style="{StaticResource SubheaderTextBlockStyle}"
             Margin="0,15"
-            Text="Day"
+            Text="{x:Static p:Localization.Day}"
             VerticalAlignment="Center"
             HorizontalAlignment="Center"
             />
             <TextBlock
             Grid.Column="3"
             Grid.Row="0"
-            Style="{StaticResource HeaderTextBlockStyle}"
+            Style="{StaticResource SubheaderTextBlockStyle}"
             Margin="0,15"
-            Text="Night"
+            Text="{x:Static p:Localization.Night}"
             VerticalAlignment="Center"
                 HorizontalAlignment="Center"
             />
-        </Grid>
-        
-        <ui:ProgressRing IsActive="{Binding Loading}" Width="100" Height="100" Visibility="{Binding Loading, Converter={StaticResource LoadingConverter}}"></ui:ProgressRing>
-        <ItemsControl  Margin="20" ItemsSource="{Binding Displays}">
-            <ItemsControl.ItemsPanel>
-                <ItemsPanelTemplate>
-                    <StackPanel Orientation="Vertical" IsItemsHost="True"/>
+            <ui:ProgressRing IsActive="{Binding Loading}" Width="100" Height="100" Margin="20" Visibility="{Binding Loading, Converter={StaticResource LoadingConverter}}" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="4"></ui:ProgressRing>
 
-                </ItemsPanelTemplate>
-            </ItemsControl.ItemsPanel>
-            <ItemsControl.ItemTemplate>
-                <DataTemplate>
-                    <!--
-                    <StackPanel Orientation="Horizontal">
-                    
-                        <Label Content="{Binding Description}" />
-                        <Slider 
-                            Minimum="0" 
-                            Maximum="100" 
-                            Value="{Binding Path=Brightness, Mode=OneWay}" 
-                            Width="400"
-                            TickPlacement="Both"
-                            TickFrequency="5"/>
 
+
+            <ItemsControl ItemsSource="{Binding Displays}" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="4">
+                <ItemsControl.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <StackPanel Orientation="Vertical" IsItemsHost="True"/>
+
+                    </ItemsPanelTemplate>
+                </ItemsControl.ItemsPanel>
+                <ItemsControl.ItemTemplate>
+                    <DataTemplate>
                         <local:DisplayConfig 
-                        Label="{Binding Path=Description}" 
-                        BrightnessCurrent="{Binding Brightness}" 
-                        BrightnessMinimum="0"
-                        BrightnessMaximum="100"
-                        />
-                    
-                    </StackPanel>
-                    -->
-                    <local:DisplayConfig 
                         Label="{Binding Path=Name}" 
                         Enabled="{Binding Path=Enabled}" 
                         Supported="{Binding Path=Supported}" 
@@ -121,34 +105,57 @@
                         BrightnessMinimum="0"
                         BrightnessMaximum="100"
                         />
-                </DataTemplate>
-            </ItemsControl.ItemTemplate>
-        </ItemsControl>
-        <Grid Margin="20">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="2*" />
-                <ColumnDefinition Width="1*" />
-                <ColumnDefinition Width="2*" />
-                <ColumnDefinition Width="2*" />
-            </Grid.ColumnDefinitions>
-            <Grid.RowDefinitions>
-                <RowDefinition Height="1*" />
-            </Grid.RowDefinitions>
+                    </DataTemplate>
+                </ItemsControl.ItemTemplate>
+            </ItemsControl>
 
-            <ui:SimpleStackPanel Orientation="Horizontal" Grid.Column="0" Grid.Row="0">
+            <ui:SimpleStackPanel Orientation="Horizontal" Grid.Column="0" Grid.Row="2">
                 <!--<Button Margin="10" Content="Preview" Command="{x:Static local:MainWindow.PreviewCommand}"></Button>-->
                 <!--<Button Margin="10" Content="Reset"></Button>-->
-                <Button Margin="10" Content="Save settings" Command="{x:Static local:MainWindow.SaveCommand}"></Button>
+                <Button Content="{x:Static p:Localization.SaveSettings}" Command="{x:Static local:MainWindow.SaveCommand}"></Button>
             </ui:SimpleStackPanel>
 
-            <Button Margin="10" Content="Set current" Command="{x:Static local:MainWindow.SetDayCommand}" Grid.Column="2" Grid.Row="0" VerticalAlignment="Center"
+            <Button Margin="10" Content="{x:Static p:Localization.SetCurrent}" Command="{x:Static local:MainWindow.SetDayCommand}" Grid.Column="2" Grid.Row="2" VerticalAlignment="Center"
                 HorizontalAlignment="Center"></Button>
-            <Button Margin="10" Content="Set current" Command="{x:Static local:MainWindow.SetNightCommand}" Grid.Column="3" Grid.Row="0" VerticalAlignment="Center"
+            <Button Margin="10" Content="{x:Static p:Localization.SetCurrent}" Command="{x:Static local:MainWindow.SetNightCommand}" Grid.Column="3" Grid.Row="2" VerticalAlignment="Center"
                 HorizontalAlignment="Center"></Button>
-            
-            
+
+
         </Grid>
-        
+        <Separator Margin="0,10,0,10" />
+        <!--
+        <TextBlock
+            Style="{StaticResource SubheaderTextBlockStyle}"
+            Margin="0,10"
+            Text="{x:Static p:Localization.ApplicationSettings}"
+            />
+        -->
+        <ui:SimpleStackPanel Orientation="Horizontal">
+            <ui:ToggleSwitch IsOn="{Binding Path=StartOnLogin}" Header="{x:Static p:Localization.StartOnLogin}" IsEnabled="{Binding Path=StartOnLoginAllowed}"></ui:ToggleSwitch>
+        </ui:SimpleStackPanel>
+        <Separator Margin="0,10,0,5"/>
+        <ui:SimpleStackPanel Orientation="Horizontal">
+            <TextBlock Text="{x:Static p:Localization.AppName}"></TextBlock>
+            <TextBlock Text=", "></TextBlock>
+            <TextBlock Text="{x:Static p:Localization.Version}"></TextBlock>
+            <TextBlock Margin="5,0,0,0" Text="{Binding Path=Version}"></TextBlock>
+            <TextBlock Text="." Margin="0,0,5,0"/>
+            <TextBlock>
+            <Hyperlink
+                NavigateUri="{Binding Path=HelpUrl}"
+                RequestNavigate="RequestNavigate">
+                <Hyperlink.Inlines>
+                    <Run Text="{x:Static p:Localization.ContextMenuHelp}"/>
+                </Hyperlink.Inlines>
+            </Hyperlink>, 
+            <Hyperlink
+                NavigateUri="{Binding Path=LicenseUrl}"
+                RequestNavigate="RequestNavigate">
+                <Hyperlink.Inlines>
+                    <Run Text="{x:Static p:Localization.License}"/>
+                </Hyperlink.Inlines>
+            </Hyperlink>
+            </TextBlock>
+        </ui:SimpleStackPanel>
     </ui:SimpleStackPanel>
-    
 </Window>

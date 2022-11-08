@@ -5,9 +5,10 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:ui="http://schemas.modernwpf.com/2019"
              xmlns:local="clr-namespace:NighttimeDisplayDimmer"
+             xmlns:p="clr-namespace:NighttimeDisplayDimmer.Properties"
              mc:Ignorable="d"
              x:Name="dc"
-             d:DesignHeight="300" d:DesignWidth="1000">
+             d:DesignHeight="140" d:DesignWidth="1000">
 
     <UserControl.Resources>
         <BooleanToVisibilityConverter x:Key="VisibleConverter" ></BooleanToVisibilityConverter>
@@ -29,12 +30,12 @@
             Grid.Column="0"
             Grid.Row="0"
             Grid.RowSpan="2"
-            Style="{StaticResource TitleTextBlockStyle}"
-            Margin="0,15"
+            Style="{StaticResource SubtitleTextBlockStyle}"
+            
             Text="{Binding Path=Label, ElementName=dc}"
             VerticalAlignment="Center"
             />
-        <ui:ToggleSwitch Grid.Column="1" Grid.Row="0" Grid.RowSpan="3" IsOn="{Binding Path=Enabled, ElementName=dc, Mode=TwoWay}" IsEnabled="{Binding Path=Supported, ElementName=dc}">Enable control</ui:ToggleSwitch>
+        <ui:ToggleSwitch Grid.Column="1" Grid.Row="0" Grid.RowSpan="3" IsOn="{Binding Path=Enabled, ElementName=dc, Mode=TwoWay}" IsEnabled="{Binding Path=Supported, ElementName=dc}" Header="{x:Static p:Localization.EnableControl}"></ui:ToggleSwitch>
         <!--Style="{StaticResource HeaderTextBlockStyle}" Style="{DynamicResource SubtitleTextBlockStyle}"-->
         <!--
         <TextBlock
@@ -106,8 +107,8 @@
             <Label Margin="10,0,10,0" Content="{Binding Path=BrightnessMaximum, ElementName=dc}"></Label>
         </StackPanel>
         -->
-        <ui:ToggleSwitch Grid.Row="1" Grid.Column="2" IsOn="{Binding Path=DayForce, ElementName=dc, Mode=TwoWay}" VerticalAlignment="Center" HorizontalAlignment="Center" Visibility="{Binding Enabled, Converter={StaticResource VisibleConverter}}" >Force decrease</ui:ToggleSwitch>
-        <ui:ToggleSwitch Grid.Row="1" Grid.Column="3" IsOn="{Binding Path=NightForce, ElementName=dc, Mode=TwoWay}" VerticalAlignment="Center" HorizontalAlignment="Center" Visibility="{Binding Enabled, Converter={StaticResource VisibleConverter}}">Force increase</ui:ToggleSwitch>
+        <ui:ToggleSwitch Grid.Row="1" Grid.Column="2" IsOn="{Binding Path=DayForce, ElementName=dc, Mode=TwoWay}" VerticalAlignment="Center" HorizontalAlignment="Center" Visibility="{Binding Enabled, Converter={StaticResource VisibleConverter}}" Header="{x:Static p:Localization.ForceDay}"></ui:ToggleSwitch>
+        <ui:ToggleSwitch Grid.Row="1" Grid.Column="3" IsOn="{Binding Path=NightForce, ElementName=dc, Mode=TwoWay}" VerticalAlignment="Center" HorizontalAlignment="Center" Visibility="{Binding Enabled, Converter={StaticResource VisibleConverter}}" Header="{x:Static p:Localization.ForceNight}"></ui:ToggleSwitch>
         
         
 
