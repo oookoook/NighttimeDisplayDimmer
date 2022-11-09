@@ -174,4 +174,13 @@
   <data name="Version" xml:space="preserve">
     <value>Version</value>
   </data>
+  <data name="EnableNotifications" xml:space="preserve">
+    <value>Notify on brightness change</value>
+  </data>
+  <data name="NotificationText" xml:space="preserve">
+    <value>Nightime Display Dimmer changed the brightness of your display(s).</value>
+  </data>
+  <data name="NotificationTitle" xml:space="preserve">
+    <value>Brightness changed</value>
+  </data>
 </root>

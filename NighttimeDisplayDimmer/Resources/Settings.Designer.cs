@@ -45,5 +45,17 @@ namespace NighttimeDisplayDimmer.Resources {
                 this["Displays"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        public bool EnableNotifications {
+            get {
+                return ((bool)(this["EnableNotifications"]));
+            }
+            set {
+                this["EnableNotifications"] = value;
+            }
+        }
     }
 }

@@ -73,10 +73,14 @@
             Visibility="{Binding Enabled, ElementName=dc, Converter={StaticResource VisibleConverter}}"
             />
         -->
-
-        <Slider 
+        <Border
+                ui:ThemeManager.RequestedTheme="Dark"
                 Grid.Column="3"
-                Grid.Row="0"            
+                Grid.Row="0"
+                Background="{DynamicResource SystemControlBackgroundAltHighBrush}"
+            >
+            <Slider 
+                            
                 Minimum="{Binding Path=BrightnessMinimum, ElementName=dc}" 
                 Maximum="{Binding Path=BrightnessMaximum, ElementName=dc}"
                 Margin="20,0"
@@ -88,6 +92,8 @@
                 VerticalAlignment="Center"
                 Visibility="{Binding Enabled, ElementName=dc, Converter={StaticResource VisibleConverter}}"           
          />
+        </Border>
+
         <!--
         <TextBlock
             Grid.Column="3"
@@ -108,9 +114,16 @@
         </StackPanel>
         -->
         <ui:ToggleSwitch Grid.Row="1" Grid.Column="2" IsOn="{Binding Path=DayForce, ElementName=dc, Mode=TwoWay}" VerticalAlignment="Center" HorizontalAlignment="Center" Visibility="{Binding Enabled, Converter={StaticResource VisibleConverter}}" Header="{x:Static p:Localization.ForceDay}"></ui:ToggleSwitch>
-        <ui:ToggleSwitch Grid.Row="1" Grid.Column="3" IsOn="{Binding Path=NightForce, ElementName=dc, Mode=TwoWay}" VerticalAlignment="Center" HorizontalAlignment="Center" Visibility="{Binding Enabled, Converter={StaticResource VisibleConverter}}" Header="{x:Static p:Localization.ForceNight}"></ui:ToggleSwitch>
-        
-        
+
+        <Border
+                ui:ThemeManager.RequestedTheme="Dark"
+                Grid.Column="3"
+                Grid.Row="1"
+                Background="{DynamicResource SystemControlBackgroundAltHighBrush}"
+            >
+            <ui:ToggleSwitch IsOn="{Binding Path=NightForce, ElementName=dc, Mode=TwoWay}" VerticalAlignment="Center" HorizontalAlignment="Center" Visibility="{Binding Enabled, Converter={StaticResource VisibleConverter}}" Header="{x:Static p:Localization.ForceNight}"></ui:ToggleSwitch>
+        </Border>
+
 
 
     </Grid>

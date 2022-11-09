@@ -96,7 +96,7 @@ namespace NighttimeDisplayDimmer
         {
             if(Force)
             {
-                return true;
+                return brightness != Brightness;
             }
             if(Type == ConfigType.NIGHT)
             {

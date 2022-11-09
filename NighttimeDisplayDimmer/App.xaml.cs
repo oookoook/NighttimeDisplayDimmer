@@ -1,4 +1,5 @@
 ﻿using Hardcodet.Wpf.TaskbarNotification;
+using Microsoft.Toolkit.Uwp.Notifications;
 using NighttimeDisplayDimmer.Detectors;
 using System;
 using System.Collections.Generic;
@@ -35,10 +36,35 @@ namespace NighttimeDisplayDimmer
 
             //create the notifyicon (it's a resource declared in NotifyIconResources.xaml
             tb = (TaskbarIcon)FindResource("taskbarIcon");
-
             
-            NighttimeDetector.GetInstance().Initialize(Util.Config.RefreshInterval);
-            DisplayChangeDetector.GetInstance().Initialize(Util.Config.RefreshInterval);
+            NighttimeDetector.GetInstance().Initialize(Util.Config.GetInstance().RefreshInterval);
+            DisplayChangeDetector.GetInstance().Initialize(Util.Config.GetInstance().RefreshInterval);
+            
+
+            // https://learn.microsoft.com/en-us/windows/apps/design/shell/tiles-and-notifications/send-local-toast?tabs=desktop-msix#step-3-handling-activation
+            ToastNotificationManagerCompat.OnActivated += toastArgs =>
+            {
+                // Obtain the arguments from the notification
+                ToastArguments args = ToastArguments.Parse(toastArgs.Argument);
+
+                Dispatcher.BeginInvoke(() =>
+                {
+                    if (
+#if DEBUG
+                    Application.Current.MainWindow == null || System.Diagnostics.Debugger.IsAttached
+#else
+                    Application.Current.MainWindow == null
+#endif
+                    ) 
+                    {
+                    
+                        Application.Current.MainWindow = new MainWindow();
+                        Application.Current.MainWindow.Show();
+                    }
+                });
+
+            };
+
             BrightnessChanger = new BrightnessChanger();
         }
 

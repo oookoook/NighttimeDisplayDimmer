@@ -28,7 +28,8 @@ namespace NighttimeDisplayDimmer
         public bool StartOnLogin { get => Util.Startup.Automatic; set { Util.Startup.Automatic = value; NotifyPropertyChanged(); } }
 
         public bool StartOnLoginAllowed { get => Util.Startup.Allowed; }
-
+        public bool EnableNotifications { get => Util.Config.GetInstance().EnableNotifications; set { Util.Config.GetInstance().EnableNotifications = value; } }
+           
         public string HelpUrl { get => Util.Links.Help; }
         public string LicenseUrl { get => Util.Links.License; }
 
@@ -56,7 +57,7 @@ namespace NighttimeDisplayDimmer
         {
             Displays.Clear();
             
-            List<MonitorInfo> saved = Util.Config.SavedDisplays;
+            List<MonitorInfo> saved = Util.Config.GetInstance().SavedDisplays;
             
             Loading = true;
             // when wrapped in Task, the Loader behaves correctly
@@ -96,7 +97,7 @@ namespace NighttimeDisplayDimmer
 
         public void SaveDisplays()
         {
-            Util.Config.SaveDisplays(ManagedDisplays);
+            Util.Config.GetInstance().SaveDisplays(ManagedDisplays);
         }
 
         

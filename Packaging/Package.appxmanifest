@@ -4,8 +4,9 @@
   xmlns="http://schemas.microsoft.com/appx/manifest/foundation/windows10"
   xmlns:uap="http://schemas.microsoft.com/appx/manifest/uap/windows10"
   xmlns:rescap="http://schemas.microsoft.com/appx/manifest/foundation/windows10/restrictedcapabilities"
-   xmlns:desktop="http://schemas.microsoft.com/appx/manifest/desktop/windows10"
-  IgnorableNamespaces="uap rescap desktop">
+  xmlns:desktop="http://schemas.microsoft.com/appx/manifest/desktop/windows10"
+  xmlns:com="http://schemas.microsoft.com/appx/manifest/com/windows10"
+  IgnorableNamespaces="uap rescap desktop com">
 
   <Identity
     Name="ba3469d8-f462-4eab-98a1-8112df5a4771"
@@ -43,13 +44,26 @@
 		<Extensions>
 			<desktop:Extension
 			  Category="windows.startupTask"
-			  Executable="$targetnametoken$.exe"
+			  Executable="NighttimeDisplayDimmer\NighttimeDisplayDimmer.exe"
 			  EntryPoint="Windows.FullTrustApplication">
 				<desktop:StartupTask
 				  TaskId="NighttimeDisplayDimmer"
 				  Enabled="true"
 				  DisplayName="Nighttime Display Dimmer" />
 			</desktop:Extension>
+			<!--Specify which CLSID to activate when toast clicked-->
+			<desktop:Extension Category="windows.toastNotificationActivation">
+				<desktop:ToastNotificationActivation ToastActivatorCLSID="f1b7735e-91e0-4ace-9952-4e36256cc639" />
+			</desktop:Extension>
+
+			<!--Register COM CLSID LocalServer32 registry key-->
+			<com:Extension Category="windows.comServer">
+				<com:ComServer>
+					<com:ExeServer Executable="NighttimeDisplayDimmer\NighttimeDisplayDimmer.exe" Arguments="-ToastActivated" DisplayName="Nighttime Display Dimmer">
+						<com:Class Id="f1b7735e-91e0-4ace-9952-4e36256cc639" DisplayName="Nighttime Display Dimmer"/>
+					</com:ExeServer>
+				</com:ComServer>
+			</com:Extension>
 		</Extensions>
     </Application>
   </Applications>

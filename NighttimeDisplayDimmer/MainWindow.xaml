@@ -11,7 +11,8 @@
         ui:WindowHelper.UseModernWindowStyle="True"
         SizeToContent="Height"
         x:Name="optionsWindow"
-        Title="{x:Static p:Localization.AppName}" Height="700" Width="1000" Icon="Resources/Logo.ico" Loaded="Window_Loaded">
+        Title="{x:Static p:Localization.AppName}" Height="700" Width="1000" Icon="Resources/Logo.ico" Loaded="Window_Loaded"
+        >
     <Window.DataContext>
         <local:OptionsViewModel/>
     </Window.DataContext>
@@ -54,7 +55,8 @@
                 <RowDefinition Height="Auto" />
                 <RowDefinition Height="Auto" />
             </Grid.RowDefinitions>
-            <TextBlock
+           
+                <TextBlock
                 Grid.Column="0"
                 Grid.Row="0"
                 Style="{StaticResource SubheaderTextBlockStyle}"
@@ -62,7 +64,9 @@
                 Text="{x:Static p:Localization.Display}"
                 VerticalAlignment="Center"
                 HorizontalAlignment="Left"
+                
             />
+            
             <TextBlock
             Grid.Column="2"
             Grid.Row="0"
@@ -72,15 +76,24 @@
             VerticalAlignment="Center"
             HorizontalAlignment="Center"
             />
-            <TextBlock
-            Grid.Column="3"
-            Grid.Row="0"
+            <Border
+                ui:ThemeManager.RequestedTheme="Dark"
+                Grid.Column="3"
+                Grid.Row="0"
+                CornerRadius="10 10 0 0"
+                Background="{DynamicResource SystemControlBackgroundAltHighBrush}"
+            >
+            
+                <TextBlock
+                Foreground="{DynamicResource SystemControlForegroundBaseHighBrush}"
             Style="{StaticResource SubheaderTextBlockStyle}"
             Margin="0,15"
             Text="{x:Static p:Localization.Night}"
             VerticalAlignment="Center"
                 HorizontalAlignment="Center"
             />
+            </Border>    
+       
             <ui:ProgressRing IsActive="{Binding Loading}" Width="100" Height="100" Margin="20" Visibility="{Binding Loading, Converter={StaticResource LoadingConverter}}" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="4"></ui:ProgressRing>
 
 
@@ -117,9 +130,17 @@
 
             <Button Margin="10" Content="{x:Static p:Localization.SetCurrent}" Command="{x:Static local:MainWindow.SetDayCommand}" Grid.Column="2" Grid.Row="2" VerticalAlignment="Center"
                 HorizontalAlignment="Center"></Button>
-            <Button Margin="10" Content="{x:Static p:Localization.SetCurrent}" Command="{x:Static local:MainWindow.SetNightCommand}" Grid.Column="3" Grid.Row="2" VerticalAlignment="Center"
-                HorizontalAlignment="Center"></Button>
 
+            <Border
+                ui:ThemeManager.RequestedTheme="Dark"
+                Grid.Column="3"
+                Grid.Row="2"
+                CornerRadius="0 0 10 10"
+                Background="{DynamicResource SystemControlBackgroundAltHighBrush}"
+            >
+                <Button Margin="10" Content="{x:Static p:Localization.SetCurrent}" Command="{x:Static local:MainWindow.SetNightCommand}" VerticalAlignment="Center"
+                HorizontalAlignment="Center" ></Button>
+            </Border>
 
         </Grid>
         <Separator Margin="0,10,0,10" />
@@ -132,6 +153,7 @@
         -->
         <ui:SimpleStackPanel Orientation="Horizontal">
             <ui:ToggleSwitch IsOn="{Binding Path=StartOnLogin}" Header="{x:Static p:Localization.StartOnLogin}" IsEnabled="{Binding Path=StartOnLoginAllowed}"></ui:ToggleSwitch>
+            <ui:ToggleSwitch IsOn="{Binding Path=EnableNotifications}" Header="{x:Static p:Localization.EnableNotifications}" Margin="40,0"></ui:ToggleSwitch>
         </ui:SimpleStackPanel>
         <Separator Margin="0,10,0,5"/>
         <ui:SimpleStackPanel Orientation="Horizontal">

@@ -133,6 +133,15 @@ namespace NighttimeDisplayDimmer.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Notify on brightness change.
+        /// </summary>
+        public static string EnableNotifications {
+            get {
+                return ResourceManager.GetString("EnableNotifications", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Force decrease.
         /// </summary>
         public static string ForceDay {
@@ -165,6 +174,24 @@ namespace NighttimeDisplayDimmer.Properties {
         public static string Night {
             get {
                 return ResourceManager.GetString("Night", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Nightime Display Dimmer changed the brightness of your display(s)..
+        /// </summary>
+        public static string NotificationText {
+            get {
+                return ResourceManager.GetString("NotificationText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Brightness changed.
+        /// </summary>
+        public static string NotificationTitle {
+            get {
+                return ResourceManager.GetString("NotificationTitle", resourceCulture);
             }
         }
         
