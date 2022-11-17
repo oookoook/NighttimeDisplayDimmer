@@ -125,10 +125,8 @@
     <Content Include="Images\Square44x44Logo.targetsize-48_altform-unplated.png" />
     <Content Include="Images\StoreLogo.scale-100.png" />
     <Content Include="Images\StoreLogo.scale-125.png" />
+    <Content Include="Images\StoreLogo.scale-200.png" />
     <Content Include="Images\Wide310x150Logo.scale-200.png" />
-    <Content Include="Square44x44Logo.targetsize-16_altform-unplated.png" />
-    <Content Include="StoreLogo.scale-100.png" />
-    <Content Include="StoreLogo.scale-125.png" />
     <None Include="Packaging_TemporaryKey.pfx" />
   </ItemGroup>
   <Import Project="$(WapProjPath)\Microsoft.DesktopBridge.targets" />
