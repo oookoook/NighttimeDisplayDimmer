@@ -3,4 +3,6 @@ logo: /assets/logo.png
 description: Sunset Dimmer is a magic tool to save your eyes when working on computer at night.
 show_downloads: false
 google_analytics:
-theme: minimal
+remote_theme: pages-themes/minimal@v0.2.0
+plugins:
+- jekyll-remote-theme # add this line to the plugins list if you already have one
