@@ -3,7 +3,7 @@
 ## Nighttime Display Dimmer
 MIT License
 
-Copyright (c) 2022 oookoook (Adam KuËera, Nastojte.cz)
+Copyright (c) 2022 oookoook (Adam Kuƒçera, Nastojte.cz)
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -36,13 +36,13 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
 
 ## Windows Community Toolkit
 
-Copyright © .NET Foundation and Contributors
+Copyright ¬© .NET Foundation and Contributors
 
 All rights reserved.
 
 MIT License (MIT)
 
-Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the ìSoftwareî), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
+Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the ÔøΩSoftwareÔøΩ), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
 
 The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
 
