@@ -4,6 +4,15 @@
 
 Sunset Dimmer is a magic tool to save your eyes when working on computer at night. Set up once and forget, save your eyes every day.
 
+<script type="module" src="https://get.microsoft.com/badge/ms-store-badge.bundled.js"></script>
+<ms-store-badge
+	productid="9P6MXT53KF20"
+	cid="github"
+	window-mode="full"
+	language="en"
+	animation="on">
+</ms-store-badge>
+
 TODO screenshot
 
 Are you a software developer, researcher, novelist, copywriter, or do you jsut work on our computer at night often? Chances are you battle eye strain caused by too bright displays.
@@ -16,4 +25,11 @@ The *Sunset Dimmer* takes this responsiblity from you. Set up the desired bright
 
 Get the app from windows store, your eys will thank you!
 
-TODO Windows store button
+<script type="module" src="https://get.microsoft.com/badge/ms-store-badge.bundled.js"></script>
+<ms-store-badge
+	productid="9P6MXT53KF20"
+	cid="github"
+	window-mode="full"
+	language="en"
+	animation="on">
+</ms-store-badge>
