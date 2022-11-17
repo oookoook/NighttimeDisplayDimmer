@@ -79,7 +79,7 @@ namespace NighttimeDisplayDimmer.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Nighttime Display Dimmer.
+        ///   Looks up a localized string similar to Sunset Dimmer.
         /// </summary>
         public static string AppName {
             get {

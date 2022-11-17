@@ -163,7 +163,7 @@
     <value>Application settings</value>
   </data>
   <data name="AppName" xml:space="preserve">
-    <value>Nighttime Display Dimmer</value>
+    <value>Sunset Dimmer</value>
   </data>
   <data name="StartOnLogin" xml:space="preserve">
     <value>Start on Windows Log In</value>

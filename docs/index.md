@@ -2,8 +2,8 @@
 
 # Sunset Dimmer
 
-Sunset Dimmer is a magic tool to save your eyes when working on computer at night. Set up once and forget, save your eyes every day.
-
+Sunset Dimmer is a magic tool to **save your eyes** when working on computer at night. **Set up once and forget**, save your eyes every day.
+<center>
 <script type="module" src="https://get.microsoft.com/badge/ms-store-badge.bundled.js"></script>
 <ms-store-badge
 	productid="9P6MXT53KF20"
@@ -12,6 +12,7 @@ Sunset Dimmer is a magic tool to save your eyes when working on computer at nigh
 	language="en"
 	animation="on">
 </ms-store-badge>
+</center>
 
 TODO screenshot
 
@@ -21,10 +22,11 @@ Windows 10 and 11 offer a great feature that helps your eyes called [Night mode]
 
 However, this app has a major drawback: it does not change display brightness. In many environments you need bright display during the day. But dimming the display for the night si too cumbersome using the display controls or external apps and you have to constantly adjust the settings, basically two times each day.
 
-The *Sunset Dimmer* takes this responsiblity from you. Set up the desired brightness levels once and the app will take care of the rest. It will automatically dim your displays when sunset comes and increases the brightness back when you start woring in the morning.
+The **Sunset Dimmer** takes this responsiblity from you. Set up the desired brightness levels once and the app will take care of the rest. It will automatically dim your displays when sunset comes and increases the brightness back when you start woring in the morning.
 
-Get the app from windows store, your eys will thank you!
+**Get the app** from the Microsoft Store, your eyes will thank you!
 
+<center>
 <script type="module" src="https://get.microsoft.com/badge/ms-store-badge.bundled.js"></script>
 <ms-store-badge
 	productid="9P6MXT53KF20"
@@ -33,3 +35,4 @@ Get the app from windows store, your eys will thank you!
 	language="en"
 	animation="on">
 </ms-store-badge>
+</center>
