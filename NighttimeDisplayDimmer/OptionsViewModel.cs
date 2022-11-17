@@ -18,7 +18,9 @@ namespace NighttimeDisplayDimmer
     {
         private bool? nightModeEnabled;
         public ObservableCollection<MonitorInfo> Displays { get; }
-        public bool? NightModeEnabled { get => nightModeEnabled; set { nightModeEnabled = value; NotifyPropertyChanged(); } }
+        public bool? NightModeEnabled { get => nightModeEnabled; set { nightModeEnabled = value; NotifyPropertyChanged(); NotifyPropertyChanged("NightModeDisabled"); } }
+
+        public bool? NightModeDisabled { get => !nightModeEnabled; }
 
         private bool loading = false;
         public bool Loading { get => loading; set { loading = value; NotifyPropertyChanged(); } }
@@ -32,6 +34,45 @@ namespace NighttimeDisplayDimmer
            
         public string HelpUrl { get => Util.Links.Help; }
         public string LicenseUrl { get => Util.Links.License; }
+
+        public bool IsDirty { get {
+                List<MonitorInfo> saved = Util.Config.GetInstance().SavedDisplays;
+                /*
+                // this means nothing - there are saved monitors that are not connected right now
+                if(saved.Count != ManagedDisplays.Count())
+                {
+                    return true;
+                }
+                
+                for(int i = 0; i < saved.Count; i++)
+                {
+                    if(!saved[i].Equals(ManagedDisplays.ElementAt(i)))
+                    {
+                        return true;
+                    }
+                }
+                */
+
+                // find out if every managed is in saved
+                foreach (MonitorInfo monitor in ManagedDisplays)
+                {
+                    MonitorInfo? sm = saved.Find(d => d.DeviceInstanceId == monitor.DeviceInstanceId);
+                    if(sm == null)
+                    {
+                        // adding new managed monitor
+                        return true;
+                    } else
+                    {
+                        // is so, check for equality
+                        if (!monitor.Equals(sm))
+                        {
+                            return true;
+                        }
+                    }
+                }
+
+                return false;
+            } }
 
         public string Version {
             get {
@@ -74,25 +115,6 @@ namespace NighttimeDisplayDimmer
                 });
                 Loading = false;
             });
-            /*
-            await Task.Run(async () =>
-            {
-                Loading = true;
-                foreach (var m in await Monitorian.Core.Models.Monitor.MonitorManager.EnumerateMonitorsAsync())
-                {
-                    MonitorInfo? i = saved.Find(ci => ci.Assign(m));
-                    if (i == null)
-                    {
-                        i = new MonitorInfo { Name = m.Description, DeviceInstanceId = m.DeviceInstanceId, Enabled = false, Monitor = m, DayConfig = new BrightnessConfig { Brightness = m.Brightness, Force = false }, NightConfig = new BrightnessConfig { Brightness = m.Brightness, Force = false } };
-                    }
-                    await dispatcher.BeginInvoke(() =>
-                    {
-                        Displays.Add(i);
-                    });
-                }
-                Loading = false;
-            });
-            */
         }
 
         public void SaveDisplays()

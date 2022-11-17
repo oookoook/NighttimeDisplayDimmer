@@ -61,6 +61,15 @@ namespace NighttimeDisplayDimmer.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Currently active.
+        /// </summary>
+        public static string Active {
+            get {
+                return ResourceManager.GetString("Active", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Application settings.
         /// </summary>
         public static string ApplicationSettings {
@@ -246,6 +255,24 @@ namespace NighttimeDisplayDimmer.Properties {
         public static string TrayToolTip {
             get {
                 return ResourceManager.GetString("TrayToolTip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to There are unsaved configuration changes. Do you wish to save the current settings?.
+        /// </summary>
+        public static string UnsavedChangesPromptText {
+            get {
+                return ResourceManager.GetString("UnsavedChangesPromptText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Unsaved changes.
+        /// </summary>
+        public static string UnsavedChangesPromptTitle {
+            get {
+                return ResourceManager.GetString("UnsavedChangesPromptTitle", resourceCulture);
             }
         }
         

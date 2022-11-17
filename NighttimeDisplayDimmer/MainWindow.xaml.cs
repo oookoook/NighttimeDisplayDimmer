@@ -86,5 +86,21 @@ namespace NighttimeDisplayDimmer
         {
             Util.Links.Open(e.Uri.AbsoluteUri);
         }
+
+        private void optionsWindow_Closing(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            if(model.IsDirty)
+            {
+                MessageBoxResult? r = ModernWpf.MessageBox.Show(Properties.Localization.UnsavedChangesPromptText, Properties.Localization.UnsavedChangesPromptTitle, MessageBoxButton.YesNoCancel, MessageBoxImage.Warning);
+                if(r == MessageBoxResult.Yes)
+                {
+                    model.SaveDisplays();    
+                } 
+                else if(r == MessageBoxResult.Cancel) 
+                {
+                    e.Cancel = true;
+                }
+            }
+        }
     }
 }

@@ -84,6 +84,20 @@ namespace NighttimeDisplayDimmer
                 Enabled = Enabled,
             };
         }
+
+        public override bool Equals(object? obj)
+        {
+            return obj is MonitorInfo info &&
+                   DeviceInstanceId == info.DeviceInstanceId &&
+                   Enabled == info.Enabled &&
+                   EqualityComparer<BrightnessConfig?>.Default.Equals(DayConfig, info.DayConfig) &&
+                   EqualityComparer<BrightnessConfig?>.Default.Equals(NightConfig, info.NightConfig);
+        }
+
+        public override int GetHashCode()
+        {
+            return HashCode.Combine(DeviceInstanceId, Enabled, DayConfig, NightConfig);
+        }
     }
 
     internal class BrightnessConfig
@@ -106,6 +120,19 @@ namespace NighttimeDisplayDimmer
                 return brightness < Brightness;
             }
             
+        }
+
+        public override bool Equals(object? obj)
+        {
+            return obj is BrightnessConfig config &&
+                   Brightness == config.Brightness &&
+                   Force == config.Force &&
+                   Type == config.Type;
+        }
+
+        public override int GetHashCode()
+        {
+            return HashCode.Combine(Brightness, Force, Type);
         }
     }
 

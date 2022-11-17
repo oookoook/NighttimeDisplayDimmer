@@ -11,13 +11,13 @@
         ui:WindowHelper.UseModernWindowStyle="True"
         SizeToContent="Height"
         x:Name="optionsWindow"
-        Title="{x:Static p:Localization.AppName}" Height="700" Width="1000" Icon="Resources/Logo.ico" Loaded="Window_Loaded"
+        Title="{x:Static p:Localization.AppName}" Height="700" Width="1000" Icon="Resources/Logo.ico" Loaded="Window_Loaded" Closing="optionsWindow_Closing"
         >
     <Window.DataContext>
         <local:OptionsViewModel/>
     </Window.DataContext>
     <Window.Resources>
-        <BooleanToVisibilityConverter x:Key="LoadingConverter" ></BooleanToVisibilityConverter>
+        <BooleanToVisibilityConverter x:Key="VisibilityConverter" ></BooleanToVisibilityConverter>
     </Window.Resources>
     <Window.CommandBindings>
         <CommandBinding Command="{x:Static local:MainWindow.PreviewCommand}"
@@ -60,22 +60,34 @@
                 Grid.Column="0"
                 Grid.Row="0"
                 Style="{StaticResource SubheaderTextBlockStyle}"
-                Margin="0,15"
+                Margin="0"
                 Text="{x:Static p:Localization.Display}"
                 VerticalAlignment="Center"
                 HorizontalAlignment="Left"
                 
             />
-            
-            <TextBlock
-            Grid.Column="2"
-            Grid.Row="0"
+            <Border
+                ui:ThemeManager.RequestedTheme="Light"
+                Grid.Column="2"
+                Grid.Row="0"
+                CornerRadius="10 10 0 0"
+                Background="{DynamicResource SystemControlBackgroundAltHighBrush}"
+            >
+                <ui:SimpleStackPanel Orientation="Vertical">
+                    <TextBlock
             Style="{StaticResource SubheaderTextBlockStyle}"
-            Margin="0,15"
             Text="{x:Static p:Localization.Day}"
-            VerticalAlignment="Center"
             HorizontalAlignment="Center"
             />
+                    <TextBlock
+                Foreground="{DynamicResource SystemControlForegroundBaseHighBrush}"
+                Margin="0,0,0,15"
+                Text="{x:Static p:Localization.Active}"
+                HorizontalAlignment="Center"
+                    Visibility="{Binding NightModeDisabled, Converter={StaticResource VisibilityConverter}}"
+                />
+                </ui:SimpleStackPanel>
+            </Border>
             <Border
                 ui:ThemeManager.RequestedTheme="Dark"
                 Grid.Column="3"
@@ -83,18 +95,36 @@
                 CornerRadius="10 10 0 0"
                 Background="{DynamicResource SystemControlBackgroundAltHighBrush}"
             >
-            
+                
+                <ui:SimpleStackPanel Orientation="Vertical">
+                <TextBlock
+                Foreground="{DynamicResource SystemControlForegroundBaseHighBrush}"
+                Style="{StaticResource SubheaderTextBlockStyle}"
+                Text="{x:Static p:Localization.Night}"
+                HorizontalAlignment="Center"
+                />
+                <TextBlock
+                Foreground="{DynamicResource SystemControlForegroundBaseHighBrush}"
+                Margin="0,0,0,15"
+                Text="{x:Static p:Localization.Active}"
+                HorizontalAlignment="Center"
+                Visibility="{Binding NightModeEnabled, Converter={StaticResource VisibilityConverter}}"
+                />
+                </ui:SimpleStackPanel>
+                
+                <!--
                 <TextBlock
                 Foreground="{DynamicResource SystemControlForegroundBaseHighBrush}"
             Style="{StaticResource SubheaderTextBlockStyle}"
-            Margin="0,15"
+            Margin="0"
             Text="{x:Static p:Localization.Night}"
-            VerticalAlignment="Center"
+                VerticalAlignment="Center"
                 HorizontalAlignment="Center"
             />
+                -->
             </Border>    
        
-            <ui:ProgressRing IsActive="{Binding Loading}" Width="100" Height="100" Margin="20" Visibility="{Binding Loading, Converter={StaticResource LoadingConverter}}" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="4"></ui:ProgressRing>
+            <ui:ProgressRing IsActive="{Binding Loading}" Width="100" Height="100" Margin="20" Visibility="{Binding Loading, Converter={StaticResource VisibilityConverter}}" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="4"></ui:ProgressRing>
 
 
 

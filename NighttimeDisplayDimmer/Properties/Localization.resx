@@ -180,7 +180,16 @@
   <data name="NotificationText" xml:space="preserve">
     <value>Nightime Display Dimmer changed the brightness of your display(s).</value>
   </data>
+  <data name="Active" xml:space="preserve">
+    <value>Currently active</value>
+  </data>
   <data name="NotificationTitle" xml:space="preserve">
     <value>Brightness changed</value>
+  </data>
+  <data name="UnsavedChangesPromptText" xml:space="preserve">
+    <value>There are unsaved configuration changes. Do you wish to save the current settings?</value>
+  </data>
+  <data name="UnsavedChangesPromptTitle" xml:space="preserve">
+    <value>Unsaved changes</value>
   </data>
 </root>
