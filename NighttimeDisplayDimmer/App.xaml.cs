@@ -66,6 +66,13 @@ namespace NighttimeDisplayDimmer
             };
 
             BrightnessChanger = new BrightnessChanger();
+
+            // open the settings window if no displays are configured
+            if (Util.Config.GetInstance().SavedDisplays.Count == 0)
+            {
+                Application.Current.MainWindow = new MainWindow();
+                Application.Current.MainWindow.Show();
+            }
         }
 
         protected override void OnExit(ExitEventArgs e)
