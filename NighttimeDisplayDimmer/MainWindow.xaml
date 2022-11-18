@@ -75,7 +75,8 @@
             >
                 <ui:SimpleStackPanel Orientation="Vertical">
                     <TextBlock
-            Style="{StaticResource SubheaderTextBlockStyle}"
+                        Foreground="{DynamicResource SystemControlForegroundBaseHighBrush}"
+                        Style="{StaticResource SubheaderTextBlockStyle}"
             Text="{x:Static p:Localization.Day}"
             HorizontalAlignment="Center"
             />
