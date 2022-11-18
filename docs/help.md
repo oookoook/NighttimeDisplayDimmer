@@ -24,8 +24,10 @@ Windows 10 version 1903 (May 2019 Update, build 10.0.18362) and up. This app is 
 ## How to use the app?
 
 * Make sure you have the [Night Mode Windows feature](https://support.microsoft.com/en-us/windows/set-your-display-for-night-time-in-windows-18fe903a-e0a1-8326-4c68-fd23d7aaf136) enabled and set up properly (I recommend enabling the automatic schedule).
-* The app starts as an icon in the Windows toolbar.
+* The app starts as an icon in the Windows toolbar notification area. 
+![Notify icon](./assets/help-notify-icon.png)
 * Start by double-clicking the app icon.
+![Settings window](./assets/help-settings.png)
 * Wait for the app to load your supported displays. If you don't see your display, try to go through the display's on-screen menu, enable the **DDC/CI** feature, and close and reopen the app window.
 * Use the toggle switches to enable control of the displays you want to dim.
 * After you enable the display, two sliders and two toggle switches (see below) show up.
