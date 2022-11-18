@@ -15,7 +15,7 @@ Sunset Dimmer is a magic tool to **save your eyes** when working on a computer a
 </ms-store-badge>
 </center>
 
-![Screenshot](./assets/screenshot.png)
+[![Screenshot](./assets/screenshot.png)](./assets/screenshot.png)
 
 Are you a software developer, researcher, novelist copywriter? Do you often **work on your computer at night**? Chances are you battle **eye strain** caused by bright displays.
 
