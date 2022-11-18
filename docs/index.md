@@ -2,7 +2,7 @@
 
 # Sunset Dimmer
 
-Sunset Dimmer is a magic tool to **save your eyes** when working on a computer at night. **Set up once and forget. Protect your eyes every day.
+Sunset Dimmer is a magic tool to **save your eyes** when working on a computer at night. **Set up once and forget.** Protect your eyes every day.
 
 <center>
 <script type="module" src="https://get.microsoft.com/badge/ms-store-badge.bundled.js"></script>
