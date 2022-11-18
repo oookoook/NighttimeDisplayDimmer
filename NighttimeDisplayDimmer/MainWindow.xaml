@@ -11,7 +11,7 @@
         ui:WindowHelper.UseModernWindowStyle="True"
         SizeToContent="Height"
         x:Name="optionsWindow"
-        Title="{x:Static p:Localization.AppName}" Height="700" Width="1000" Icon="Resources/Logo.ico" Loaded="Window_Loaded" Closing="optionsWindow_Closing"
+        Title="{x:Static p:Localization.AppName}" Height="700" Width="1100" Icon="Resources/Logo.ico" Loaded="Window_Loaded" Closing="optionsWindow_Closing"
         >
     <Window.DataContext>
         <local:OptionsViewModel/>
@@ -158,9 +158,16 @@
                 <Button Content="{x:Static p:Localization.SaveSettings}" Command="{x:Static local:MainWindow.SaveCommand}"></Button>
             </ui:SimpleStackPanel>
 
-            <Button Margin="10" Content="{x:Static p:Localization.SetCurrent}" Command="{x:Static local:MainWindow.SetDayCommand}" Grid.Column="2" Grid.Row="2" VerticalAlignment="Center"
+            <Border
+                ui:ThemeManager.RequestedTheme="Light"
+                Grid.Column="2"
+                Grid.Row="2"
+                CornerRadius="0 0 10 10"
+                Background="{DynamicResource SystemControlBackgroundAltHighBrush}"
+            >
+                <Button Margin="10" Content="{x:Static p:Localization.SetCurrent}" Command="{x:Static local:MainWindow.SetDayCommand}" VerticalAlignment="Center"
                 HorizontalAlignment="Center"></Button>
-
+            </Border>
             <Border
                 ui:ThemeManager.RequestedTheme="Dark"
                 Grid.Column="3"

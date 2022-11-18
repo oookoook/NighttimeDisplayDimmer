@@ -79,8 +79,8 @@ namespace NighttimeDisplayDimmer
                 Name = Name,
                 DeviceInstanceId = DeviceInstanceId,
                 Monitor = Monitor,
-                DayConfig = DayConfig,
-                NightConfig = NightConfig,
+                DayConfig = DayConfig.Clone(),
+                NightConfig = NightConfig.Clone(),
                 Enabled = Enabled,
             };
         }
@@ -133,6 +133,11 @@ namespace NighttimeDisplayDimmer
         public override int GetHashCode()
         {
             return HashCode.Combine(Brightness, Force, Type);
+        }
+
+        public BrightnessConfig Clone()
+        {
+            return new BrightnessConfig { Brightness = Brightness, Force = Force, Type = Type };
         }
     }
 

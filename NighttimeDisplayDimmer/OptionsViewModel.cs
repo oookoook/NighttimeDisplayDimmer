@@ -25,7 +25,7 @@ namespace NighttimeDisplayDimmer
         private bool loading = false;
         public bool Loading { get => loading; set { loading = value; NotifyPropertyChanged(); } }
 
-        public IEnumerable<MonitorInfo> ManagedDisplays { get => Displays.Where(d => d.Enabled && (d.Supported ?? false)); }
+        public IEnumerable<MonitorInfo> ManagedDisplays { get => Displays.Where(d => IsManaged(d)); }
 
         public bool StartOnLogin { get => Util.Startup.Automatic; set { Util.Startup.Automatic = value; NotifyPropertyChanged(); } }
 
@@ -157,10 +157,19 @@ namespace NighttimeDisplayDimmer
             // it's required to do it this way so changes can be observed
             for(int i = 0; i < Displays.Count; i++)
             {
-                MonitorInfo m = Displays[i].Clone();
-                m.GetConfig(t).Brightness = m.GetBrightness();
-                Displays[i] = m;
+                if (IsManaged(Displays[i]))
+                {
+                    MonitorInfo m = Displays[i].Clone();
+                    m.GetConfig(t).Brightness = m.GetBrightness();
+                    Displays[i] = m;
+                }
+                
             }
+        }
+
+        private bool IsManaged(MonitorInfo d)
+        {
+            return d.Enabled && (d.Supported ?? false);
         }
     }
 }
