@@ -19,7 +19,7 @@ Sunset Dimmer is a magic tool to **save your eyes** when working on a computer a
 
 Are you a software developer, researcher, novelist copywriter? Do you often **work on your computer at night**? Chances are you battle **eye strain** caused by bright displays.
 
-Windows 10 and 11 offer a great feature that helps your eyes called [Night mode](https://support.microsoft.com/en-us/windows/set-your-display-for-night-time-in-windows-18fe903a-e0a1-8326-4c68-fd23d7aaf136). The Night mode reduces the amount of blue light emitted by the displays.
+Windows 10 and 11 offer a great feature that helps your eyes called [Night light](https://support.microsoft.com/en-us/windows/set-your-display-for-night-time-in-windows-18fe903a-e0a1-8326-4c68-fd23d7aaf136). The Night mode reduces the amount of blue light emitted by the displays.
 
 However, this feature has a significant drawback: it does not change display brightness. In many environments, you need bright displays during the day. But dimming the display for the night is too cumbersome using the display controls or external apps. You have to adjust the settings two times each day constantly.
 
