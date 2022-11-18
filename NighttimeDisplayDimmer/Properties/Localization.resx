@@ -178,7 +178,7 @@
     <value>Notify on brightness change</value>
   </data>
   <data name="NotificationText" xml:space="preserve">
-    <value>Nightime Display Dimmer changed the brightness of your display(s).</value>
+    <value>Sunset Dimmer changed the brightness of your display(s).</value>
   </data>
   <data name="Active" xml:space="preserve">
     <value>Currently active</value>

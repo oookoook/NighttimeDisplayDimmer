@@ -187,7 +187,7 @@ namespace NighttimeDisplayDimmer.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Nightime Display Dimmer changed the brightness of your display(s)..
+        ///   Looks up a localized string similar to Sunset Dimmer changed the brightness of your display(s)..
         /// </summary>
         public static string NotificationText {
             get {

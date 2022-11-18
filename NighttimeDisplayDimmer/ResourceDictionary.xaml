@@ -5,7 +5,7 @@
                     xmlns:local="clr-namespace:NighttimeDisplayDimmer">
     <tb:TaskbarIcon x:Key="taskbarIcon"
                     Visibility="Visible"
-                    ToolTipText="Nighttime Display Dimmer"
+                    ToolTipText="{x:Static p:Localization.AppName}"
                     IconSource="Resources/Logo.ico"
                     MenuActivation="LeftOrRightClick"
                     DoubleClickCommand="{Binding ShowWindowCommand}"
