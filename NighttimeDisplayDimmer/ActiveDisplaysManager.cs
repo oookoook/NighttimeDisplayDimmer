@@ -15,8 +15,16 @@ namespace NighttimeDisplayDimmer
             List<MonitorInfo> displays = new List<MonitorInfo>();
             foreach (var m in await Monitorian.Core.Models.Monitor.MonitorManager.EnumerateMonitorsAsync())
             {
-                m.UpdateBrightness();
                 MonitorInfo? i = saved.Find(ci => ci.Assign(m));
+                
+                // if i is not null, the display was previously recognized and is not loaded correctly - add it anyway
+                // the brightness will be loaded later
+                if (!m.IsBrightnessSupported && i == null)
+                {
+                    continue;
+                }
+                m.UpdateBrightness();
+                
                 if (i == null)
                 {
                     i = new MonitorInfo { Name = m.Description, DeviceInstanceId = m.DeviceInstanceId, Enabled = false, Monitor = m, DayConfig = new BrightnessConfig { Brightness = m.Brightness, Force = false, Type = ConfigType.DAY }, NightConfig = new BrightnessConfig { Brightness = m.Brightness, Force = false, Type = ConfigType.NIGHT } };

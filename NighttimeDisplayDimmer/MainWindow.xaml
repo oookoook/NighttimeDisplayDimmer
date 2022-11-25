@@ -126,7 +126,7 @@
             </Border>    
        
             <ui:ProgressRing IsActive="{Binding Loading}" Width="100" Height="100" Margin="20" Visibility="{Binding Loading, Converter={StaticResource VisibilityConverter}}" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="4"></ui:ProgressRing>
-
+            <TextBlock Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="4" VerticalAlignment="Center" HorizontalAlignment="Center" Text="{x:Static p:Localization.RemoteSession}" Visibility="{Binding RemoteSession, Converter={StaticResource VisibilityConverter}}"></TextBlock>
 
 
             <ItemsControl ItemsSource="{Binding Displays}" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="4">

@@ -19,8 +19,12 @@ namespace NighttimeDisplayDimmer.Detectors
         public delegate void DisplayChangeEventHandler(object sender, DisplayChangeEventArgs args);
         public event DisplayChangeEventHandler? DisplaysChanged;
 
+        private int ticksDelay = -1;
+        private bool remoteLast;
+
         private DisplayChangeDetector()
         {
+            remoteLast = Util.Session.IsRemote;
         }
 
         public static DisplayChangeDetector GetInstance()
@@ -34,11 +38,24 @@ namespace NighttimeDisplayDimmer.Detectors
 
         protected override void OnTick()
         {
-            if(Monitorian.Core.Models.Monitor.MonitorManager.CheckMonitorsChanged())
+            bool remoteNow = Util.Session.IsRemote;
+            if (!remoteNow && (Monitorian.Core.Models.Monitor.MonitorManager.CheckMonitorsChanged() || remoteLast))
+            {
+                // little cooldown so windows have time to process the new display...
+                //System.Threading.Thread.Sleep(5000);
+                ticksDelay = 2;
+            }
+
+            if(ticksDelay == 0)
             {
                 DisplayChangeEventHandler? e = DisplaysChanged;
                 e?.Invoke(this, new DisplayChangeEventArgs());
             }
+            if(ticksDelay >= 0)
+            {
+                ticksDelay -= 1;
+            }
+            remoteLast = remoteNow;
         }
     }
 }

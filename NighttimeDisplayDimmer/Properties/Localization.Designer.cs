@@ -205,6 +205,15 @@ namespace NighttimeDisplayDimmer.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Not available for remote session..
+        /// </summary>
+        public static string RemoteSession {
+            get {
+                return ResourceManager.GetString("RemoteSession", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Save Settings.
         /// </summary>
         public static string SaveSettings {

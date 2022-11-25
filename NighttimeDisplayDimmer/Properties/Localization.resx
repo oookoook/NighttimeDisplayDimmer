@@ -192,4 +192,7 @@
   <data name="UnsavedChangesPromptTitle" xml:space="preserve">
     <value>Unsaved changes</value>
   </data>
+  <data name="RemoteSession" xml:space="preserve">
+    <value>Not available for remote session.</value>
+  </data>
 </root>

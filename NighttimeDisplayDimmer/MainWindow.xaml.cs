@@ -35,7 +35,10 @@ namespace NighttimeDisplayDimmer
         
         private async void Window_Loaded(object sender, RoutedEventArgs e)
         {
-            await model.LoadDisplays(Dispatcher);
+            if (!model.RemoteSession)
+            {
+                await model.LoadDisplays(Dispatcher);
+            }
         }
 
         private async void PreviewCommand_Executed(object sender, ExecutedRoutedEventArgs e)

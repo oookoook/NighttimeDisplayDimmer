@@ -11,7 +11,7 @@
   <Identity
     Name="55638AdamKuera.SunsetDimmer"
     Publisher="CN=061409C3-2C13-40D0-ABA4-0BD45F9C9097"
-    Version="0.1.32.0" />
+    Version="0.1.40.0" />
 
   <Properties>
     <DisplayName>Sunset Dimmer</DisplayName>

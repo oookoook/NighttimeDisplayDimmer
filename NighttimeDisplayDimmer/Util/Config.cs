@@ -1,4 +1,6 @@
-﻿using NighttimeDisplayDimmer.Detectors;
+﻿//using Microsoft.Extensions.Logging;
+//using Microsoft.Extensions.Logging.EventLog;
+using NighttimeDisplayDimmer.Detectors;
 using System;
 using System.Collections.Generic;
 using System.DirectoryServices.ActiveDirectory;
@@ -14,7 +16,7 @@ using static NighttimeDisplayDimmer.Detectors.NighttimeDetector;
 
 namespace NighttimeDisplayDimmer.Util
 {
-    internal class Config
+    internal class Config : IDisposable
     {
         public int RefreshInterval
         {
@@ -62,9 +64,30 @@ namespace NighttimeDisplayDimmer.Util
         public delegate void ConfigChangeEventHandler(object sender, ConfigChangeEventArgs args);
         public event ConfigChangeEventHandler? ConfigChanged;
 
+        //public ILoggerFactory LogFactory { get; set; }
+
         private Config()
         {
-
+            /*
+            LogFactory = LoggerFactory.Create(builder =>
+            {
+                builder
+                    .AddFilter("Microsoft", LogLevel.Warning)
+                    .AddFilter("System", LogLevel.Warning)
+                    .AddFilter("NighttimeDisplayDimmer",
+#if DEBUG
+                    LogLevel.Debug
+#else
+                    LogLevel.Information
+#endif
+                    )
+                    .AddEventLog(configuration => {
+                        //configuration.LogName = "Application";
+                        // this is not registered as a source
+                        //configuration.SourceName = "Nighttime Display Dimmer";
+                    });
+            });
+            */
         }
 
         public static Config GetInstance()
@@ -101,5 +124,9 @@ namespace NighttimeDisplayDimmer.Util
             e?.Invoke(this, new ConfigChangeEventArgs());
         }
 
+        public void Dispose()
+        {
+            //LogFactory.Dispose();
+        }
     }
 }

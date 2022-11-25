@@ -35,7 +35,8 @@ namespace NighttimeDisplayDimmer
         public int GetBrightness(bool refresh = true)
         {
             if (Monitor == null) { throw new InvalidOperationException("Monitor not found"); }
-            if (refresh)
+            
+            if(refresh)
             {
                 Monitor.UpdateBrightness();
             }
@@ -79,8 +80,8 @@ namespace NighttimeDisplayDimmer
                 Name = Name,
                 DeviceInstanceId = DeviceInstanceId,
                 Monitor = Monitor,
-                DayConfig = DayConfig.Clone(),
-                NightConfig = NightConfig.Clone(),
+                DayConfig = DayConfig?.Clone(),
+                NightConfig = NightConfig?.Clone(),
                 Enabled = Enabled,
             };
         }
@@ -97,6 +98,11 @@ namespace NighttimeDisplayDimmer
         public override int GetHashCode()
         {
             return HashCode.Combine(DeviceInstanceId, Enabled, DayConfig, NightConfig);
+        }
+
+        public override string ToString()
+        {
+            return $"[ Name {Name} Id {DeviceInstanceId} Enabled {Enabled} Present {Present} Brightness {Monitor?.Brightness} DayConfig {DayConfig} NightConfig {NightConfig}]";
         }
     }
 
@@ -138,6 +144,11 @@ namespace NighttimeDisplayDimmer
         public BrightnessConfig Clone()
         {
             return new BrightnessConfig { Brightness = Brightness, Force = Force, Type = Type };
+        }
+
+        public override string? ToString()
+        {
+            return $"[ Type {Type} Brightness {Brightness} Force {Force} ]";
         }
     }
 

@@ -25,6 +25,9 @@ namespace NighttimeDisplayDimmer
         private bool loading = false;
         public bool Loading { get => loading; set { loading = value; NotifyPropertyChanged(); } }
 
+        private bool remoteSession;
+        public bool RemoteSession { get => remoteSession; }
+
         public IEnumerable<MonitorInfo> ManagedDisplays { get => Displays.Where(d => IsManaged(d)); }
 
         public bool StartOnLogin { get => Util.Startup.Automatic; set { Util.Startup.Automatic = value; NotifyPropertyChanged(); } }
@@ -87,6 +90,7 @@ namespace NighttimeDisplayDimmer
             d.NightModeChanged += NightModeChanged;
             NightModeEnabled = d.NightMode;
             Displays = new ObservableCollection<MonitorInfo>();
+            remoteSession = Util.Session.IsRemote;
         }
 
         private void NightModeChanged(object sender, NighttimeDetector.NightModeChangeEventArgs args)
