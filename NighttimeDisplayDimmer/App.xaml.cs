@@ -49,18 +49,7 @@ namespace NighttimeDisplayDimmer
 
                 Dispatcher.BeginInvoke(() =>
                 {
-                    if (
-#if DEBUG
-                    Application.Current.MainWindow == null || System.Diagnostics.Debugger.IsAttached
-#else
-                    Application.Current.MainWindow == null
-#endif
-                    ) 
-                    {
-                    
-                        Application.Current.MainWindow = new MainWindow();
-                        Application.Current.MainWindow.Show();
-                    }
+                    NighttimeDisplayDimmer.MainWindow.HandleOpen();
                 });
 
             };

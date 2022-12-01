@@ -105,5 +105,25 @@ namespace NighttimeDisplayDimmer
                 }
             }
         }
+
+        public static void HandleOpen()
+        {
+            if (
+#if DEBUG
+                            Application.Current.MainWindow == null || System.Diagnostics.Debugger.IsAttached
+#else
+                            Application.Current.MainWindow == null
+#endif
+                        )
+            {
+
+                Application.Current.MainWindow = new MainWindow();
+                Application.Current.MainWindow.Show();
+            }
+            else
+            {
+                Application.Current.MainWindow.Activate();
+            }
+        }
     }
 }

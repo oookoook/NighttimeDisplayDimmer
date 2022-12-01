@@ -10,7 +10,7 @@ namespace NighttimeDisplayDimmer.Util
     {
 
         public static readonly string Help = "https://sunsetdimmer.nastojte.cz/help.html";
-        public static readonly string License = "https://sunsetdimmer.nastojte.cz/license.html";
+        public static readonly string License = "https://sunsetdimmer.nastojte.cz/licenses.html";
         public static Task<bool> Open(string url)
         {
             return Windows.System.Launcher.LaunchUriAsync(new System.Uri(url)).AsTask();

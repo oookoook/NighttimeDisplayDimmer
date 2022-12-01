@@ -9,6 +9,7 @@
         d:DataContext="{d:DesignInstance Type=local:OptionsViewModel}"
         mc:Ignorable="d"
         ui:WindowHelper.UseModernWindowStyle="True"
+        ResizeMode="NoResize"
         SizeToContent="Height"
         x:Name="optionsWindow"
         Title="{x:Static p:Localization.AppName}" Height="700" Width="1100" Icon="Resources/Logo.ico" Loaded="Window_Loaded" Closing="optionsWindow_Closing"

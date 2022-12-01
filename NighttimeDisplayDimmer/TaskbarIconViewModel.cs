@@ -27,6 +27,7 @@ namespace NighttimeDisplayDimmer
                 return new DelegateCommand
                 {
                     // hack to allow open options window in debug mode
+                    /*
                     CanExecuteFunc = () => {
 #if DEBUG
                         return Application.Current.MainWindow == null || System.Diagnostics.Debugger.IsAttached;
@@ -39,8 +40,15 @@ namespace NighttimeDisplayDimmer
                         Application.Current.MainWindow = new MainWindow();
                         Application.Current.MainWindow.Show();
                     }
+                    */
+                    CanExecuteFunc = () => true,
+                    CommandAction = () =>
+                    {
+                        MainWindow.HandleOpen();
+                    }
+
                 };
-            }
+             }
         }
 
         /// <summary>
