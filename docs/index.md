@@ -2,7 +2,7 @@
 
 # Sunset Dimmer
 
-Magic tool to **save your eyes** when working on a computer at night. Automatically changes **brightness** of your displays at *sunset and sunrise**. **Set up once and forget.** Protect your eyes every day.
+Magic tool to **save your eyes** when working on a computer at night. Automatically changes **brightness** of your displays at **sunset and sunrise**. **Set up once and forget.** Protect your eyes every day.
 
 <center>
 <script type="module" src="https://get.microsoft.com/badge/ms-store-badge.bundled.js"></script>
