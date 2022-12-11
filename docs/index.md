@@ -1,4 +1,4 @@
-[Help](./help.html) • [License](./license.html)
+[Help](./help.html) • [License](./licenses.html)
 
 # Sunset Dimmer
 
